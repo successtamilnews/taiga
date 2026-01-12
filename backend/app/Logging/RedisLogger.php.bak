@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Logging;
+
+use Monolog\Logger;
+use Monolog\Handler\AbstractProcessingHandler;
+use Illuminate\Support\Facades\Redis;
+
+class RedisLogger
+{
+    /**
+     * Create a custom Monolog instance.
+     */
+    public function __invoke(array $config)
+    {
+        $logger = new Logger('redis');
+        $handler = new RedisHandler($config);
+        $logger->pushHandler($handler);
+        
+        return $logger;
+    }
+}
+
+class RedisHandler extends AbstractProcessingHandler
+{
+    protected $config;
+    protected $connection;
+
+    public function __construct(array $config)
+    {
+        parent::__construct($config['level'] ?? Logger::DEBUG);
+        $this->config = $config;
+        $this->connection = $config['connection'] ?? 'default';
+    }
+
+    protected function write(\Monolog\LogRecord $record): void
+    {
+        try {
+            $logData = [
+                'level' => $record->level->name,
+                'message' => $record->message,
+                'context' => $record->context,
+                'extra' => $record->extra,
+                'timestamp' => $record->datetime->format('c'),
+                'channel' => $record->channel,
+            ];
+
+            // Store in Redis with expiration
+            Redis::connection($this->connection)->zadd(
+                'logs:real_time:all',
+                $record['datetime']->getTimestamp(),
+                json_encode($logData)
+            );
+
+            Redis::connection($this->connection)->expire('logs:real_time:all', 86400); // 24 hours
+
+            // Store by level
+            Redis::connection($this->connection)->zadd(
+                "logs:level:{$record['level_name']}",
+                $record['datetime']->getTimestamp(),
+                json_encode($logData)
+            );
+
+            Redis::connection($this->connection)->expire("logs:level:{$record['level_name']}", 86400);
+
+            // Store by channel
+            Redis::connection($this->connection)->zadd(
+                "logs:channel:{$record['channel']}",
+                $record['datetime']->getTimestamp(),
+                json_encode($logData)
+            );
+
+            Redis::connection($this->connection)->expire("logs:channel:{$record['channel']}", 86400);
+
+        } catch (\Exception $e) {
+            // Fallback to error log if Redis fails
+            error_log("Redis logging failed: " . $e->getMessage());
+        }
+    }
+}

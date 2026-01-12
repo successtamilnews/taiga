@@ -1,0 +1,52 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+.env
+.env.*
+.vercel
+
+# Node/Next.js
+node_modules/
+**/node_modules/
+.next/
+.turbo/
+out/
+dist/
+build/
+
+# Laravel (backend)
+backend/vendor/
+backend/node_modules/
+backend/storage/
+backend/.env
+backend/.env.*
+backend/public/storage
+backend/.phpunit.result.cache
+
+# Frontend apps
+website/node_modules/
+website/.next/
+website/out/
+
+# POS
+pos/node_modules/
+pos/.next/
+pos/out/
+
+# Flutter (mobile)
+mobile/**/build/
+mobile/**/.dart_tool/
+mobile/**/.packages
+mobile/**/.flutter-plugins*
+mobile/**/.metadata
+mobile/**/ios/Pods/
+mobile/**/android/.gradle/
+mobile/**/android/local.properties
+
+# Others
+.idea/
+.vscode/
+*.swp
+*.swo

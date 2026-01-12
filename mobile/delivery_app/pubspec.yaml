@@ -1,0 +1,58 @@
+pubspec.yaml
+name: delivery_app
+description: Taiga Ecommerce Delivery App - Flutter application for delivery personnel
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  provider: ^6.1.1
+  bloc: ^8.1.2
+  flutter_bloc: ^8.1.3
+  
+  # Networking
+  http: ^1.1.0
+  dio: ^5.3.2
+  
+  # Local Storage
+  shared_preferences: ^2.2.2
+  
+  # UI Components
+  cupertino_icons: ^1.0.6
+  google_fonts: ^6.1.0
+  
+  # Maps & Location
+  google_maps_flutter: ^2.5.0
+  geolocator: ^10.1.0
+  geocoding: ^2.1.1
+  
+  # Firebase
+  firebase_core: ^2.24.2
+  firebase_messaging: ^14.7.9
+  firebase_auth: ^4.15.3
+  
+  # Utilities
+  intl: ^0.18.1
+  image_picker: ^1.0.4
+  url_launcher: ^6.2.1
+  permission_handler: ^11.1.0
+  connectivity_plus: ^5.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
