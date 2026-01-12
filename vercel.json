@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "cd website && npm ci && npm run build",
-  "outputDirectory": "website/.next",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "cd website && npm ci"
+  "installCommand": "npm ci"
 }
