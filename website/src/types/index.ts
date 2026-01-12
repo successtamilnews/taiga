@@ -234,6 +234,7 @@ export interface SearchFilters {
   max_price?: number;
   in_stock?: boolean;
   featured?: boolean;
+  on_sale?: boolean;
   rating?: number;
   sort?: 'name' | 'price' | 'rating' | 'newest' | 'oldest';
   order?: 'asc' | 'desc';
