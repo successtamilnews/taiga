@@ -31,6 +31,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
+<!-- Last updated: 2026-01-13 -->
 Recommended: Vercel Git Integration (monorepo)
 
 - Root Directory: `website`
