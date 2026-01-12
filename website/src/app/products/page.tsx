@@ -111,7 +111,7 @@ export default function ProductsPage() {
 
         const list = Array.isArray(response.data)
           ? response.data
-          : (response.data?.data ?? [])
+          : ((response as any).data?.data ?? [])
 
         setProducts(list.map(normalizeProduct))
         setTotalPages((response as any)?.data?.last_page || response.meta?.last_page || 1)
