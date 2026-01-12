@@ -31,22 +31,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-Recommended: Deploy via Vercel (monorepo)
+Recommended: Vercel Git Integration (monorepo)
 
-- Project Root: set to `website`
+- Root Directory: `website`
+- Framework: Next.js (auto)
 - Build Command: `npm run build`
-- Output: Next.js (default)
+- Production Branch: `master` (current) or `main`
 - Environment variables (Production & Preview):
-	- `NEXT_PUBLIC_SITE_URL` = your frontend domain (e.g., `https://www.taiga.asia`)
-	- `NEXT_PUBLIC_API_URL` = your API base (e.g., `https://taiga.asia/api`)
+  - `NEXT_PUBLIC_SITE_URL` = your frontend domain (e.g., `https://www.taiga.asia`)
+  - `NEXT_PUBLIC_API_URL` = your API base (e.g., `https://taiga.asia/api`)
 
-GitHub Actions (auto-deploy)
+GitHub Actions (alternative auto-deploy)
 
-- This repo includes a workflow at `.github/workflows/deploy-website-vercel.yml` that:
-	- Deploys Preview on pull requests touching `website/`
-	- Deploys Production on pushes to `main` touching `website/`
+- Single consolidated workflow: `.github/workflows/vercel-deploy.yml`
+  - Runs only on changes under `website/**`
+  - Supports Preview on PRs and Production on master/main
 - Required GitHub Secrets:
-	- `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
+  - `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
 
 Verify after deploy
 

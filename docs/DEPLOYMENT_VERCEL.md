@@ -37,7 +37,7 @@ In Project Settings → Environment Variables, add any variables the website exp
 
 ## 4) Choose deploy behavior
 
-- Production Branch: `main` (default). Pushes/merges to `main` deploy to Production.
+- Production Branch: set to `master` (current default in this repo) or `main` if you rename later. Pushes/merges to the Production branch deploy to Production.
 - Pull Requests: Vercel automatically creates Preview deployments per PR/branch.
 
 ## 5) Verify first deployment
