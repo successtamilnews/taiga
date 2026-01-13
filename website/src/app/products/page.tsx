@@ -1,7 +1,8 @@
-'use client'
+"use client"
+
+export const dynamic = 'force-dynamic'
 
 import { useState, useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
 import { Filter, Grid, List, Search, SlidersHorizontal } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -22,7 +23,6 @@ export default function ProductsPage() {
   const [totalPages, setTotalPages] = useState(1)
   const [categoryOptions, setCategoryOptions] = useState<Category[]>([])
 
-  const searchParams = useSearchParams()
   const { searchQuery, setSearchQuery } = useAppStore()
 
   useEffect(() => {
